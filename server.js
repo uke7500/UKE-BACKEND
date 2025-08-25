@@ -136,7 +136,7 @@ app.post("/capture-paypal-order", async (req, res) => {
             const { full_name, address, phone, city, postal_code, country, state, delivery_time, shipping_type, email, order_id } = shipping_data.data;
 
             const productData = await getOrderData(documentId);
-            const { total_price, cart_subtotal_price, discount } = productData.data;
+            const { total_price, cart_subtotal_price, discount } = productData.data[0];
 
 
             // 1. Send email to buyer
