@@ -157,7 +157,7 @@ app.post("/capture-paypal-order", async (req, res) => {
                 `<h2>New Order from ${full_name}</h2>
                 <p><b>Email:</b> ${email}</p>
                 <p><b>-------------</b></p>
-                <p><b>Shipping Address:</b></p>
+                <h2><b>Shipping Address:</b></h2>
                 <p><b>Phone: </b>${phone}</p>
                 <p><b>Address: </b>${address}</p>
                 <p><b>Country: </b>${country}</p>
@@ -168,12 +168,12 @@ app.post("/capture-paypal-order", async (req, res) => {
                 <p><b>Shipping Type: </b>${shipping_type}</p>
                 <p><b>Order ID:</b> ${order_id}</p>
                 <p><b>-------------</b></p>
-                <h3><b>Payment Details:</b></h3>
+                <h2><b>Payment Details:</b></h2>
                 <p><b>Cart Total Price: </b>${cart_subtotal_price}</p>
                 <p><b>Discount: </b>${discount}</p>
                 <p><b>Total: </b>${total_price}</p>
                 <p><b>-------------</b></p>
-                <h3><b>Product Details:</b></h3>
+                <h2><b>Product Details:</b></h2>
                 ${order_items.map((item) => `
                     <p><b>Product Brand:</b> ${item.product.brand}</p>
                     <p><b>Product:</b> ${item.product.name}</p>
