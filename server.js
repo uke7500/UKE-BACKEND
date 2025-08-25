@@ -168,8 +168,7 @@ app.post("/capture-paypal-order", async (req, res) => {
                 <p><b>Payment Details:</b></p>
                 <p><b>Cart Total Price: </b>${cart_subtotal_price}</p>
                 <p><b>Discount: </b>${discount}</p>
-                <p><b>Total: </b>${total_price}</p>
-                `
+                <p><b>Total: </b>${total_price}</p>`
             );
 
             return res.json({
