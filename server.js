@@ -175,7 +175,7 @@ app.post("/capture-paypal-order", async (req, res) => {
                 <p><b>-------------</b></p>
                 <h3><b>Product Details:</b></h3>
                 ${order_items.map((item) => `
-                    <p><b>Product Brand:</b> ${item.product.brandz}</p>
+                    <p><b>Product Brand:</b> ${item.product.brand}</p>
                     <p><b>Product:</b> ${item.product.name}</p>
                     <p><b>Quantity:</b> ${item.quantity}</p>
                     <p><b>Model No.:</b> ${item.product.model_no}</p>
