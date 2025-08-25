@@ -137,6 +137,7 @@ app.post("/capture-paypal-order", async (req, res) => {
 
             const productData = await getOrderData(documentId);
             const { total_price, cart_subtotal_price, discount } = productData.data[0];
+            const order_items = productData.data[0].order_item;
 
 
             // 1. Send email to buyer
@@ -168,7 +169,13 @@ app.post("/capture-paypal-order", async (req, res) => {
                 <p><b>Payment Details:</b></p>
                 <p><b>Cart Total Price: </b>${cart_subtotal_price}</p>
                 <p><b>Discount: </b>${discount}</p>
-                <p><b>Total: </b>${total_price}</p>`
+                <p><b>Total: </b>${total_price}</p>
+                <p><b>Product Details:</b></p>
+                ${order_items.map((item) => `
+                    <p><b>Product:</b> ${item.product.name}</p>
+                    <p><b>Quantity:</b> ${item.quantity}</p>
+                    <p><b>Price:</b> ${item.product.model_no}</p>
+                `).join("")}`
             );
 
             return res.json({
