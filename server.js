@@ -166,11 +166,11 @@ app.post("/capture-paypal-order", async (req, res) => {
                 <p><b>Delivery Time: </b>${delivery_time}</p>
                 <p><b>Shipping Type: </b>${shipping_type}</p>
                 <p><b>Order ID:</b> ${order_id}</p>
-                <p><b>Payment Details:</b></p>
+                <h4><b>Payment Details:</b></h4>
                 <p><b>Cart Total Price: </b>${cart_subtotal_price}</p>
                 <p><b>Discount: </b>${discount}</p>
                 <p><b>Total: </b>${total_price}</p>
-                <p><b>Product Details:</b></p>
+                <h4><b>Product Details:</b></h4>
                 ${order_items.map((item) => `
                     <p><b>Product:</b> ${item.product.name}</p>
                     <p><b>Quantity:</b> ${item.quantity}</p>
