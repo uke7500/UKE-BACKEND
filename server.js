@@ -5,6 +5,7 @@ import cors from "cors";        // npm i cors
 import dotenv from "dotenv";    // npm i dotenv
 import nodemailer from "nodemailer"; // npm i nodemailer
 import getShippingData from "./utils/getShippingData.js";
+import getOrderData from "./utils/getOrderData.js";
 
 dotenv.config();
 const app = express();
@@ -103,9 +104,10 @@ app.post("/create-paypal-order", async (req, res) => {
     }
 });
 
+
 app.post("/capture-paypal-order", async (req, res) => {
     try {
-        const { orderID } = req.body;
+        const { orderID, documentId } = req.body;
         if (!orderID) throw new Error("orderID is required");
 
         const accessToken = await getAccessToken();
@@ -133,6 +135,9 @@ app.post("/capture-paypal-order", async (req, res) => {
 
             const { full_name, address, phone, city, postal_code, country, state, delivery_time, shipping_type, email, order_id } = shipping_data.data;
 
+            const productData = await getOrderData(documentId);
+            const { total_price, cart_subtotal_price, discount } = productData.data;
+
 
             // 1. Send email to buyer
             await sendEmail(
@@ -159,7 +164,12 @@ app.post("/capture-paypal-order", async (req, res) => {
                 <p><b>Postal Code: </b>${postal_code}</p>
                 <p><b>Delivery Time: </b>${delivery_time}</p>
                 <p><b>Shipping Type: </b>${shipping_type}</p>
-                <p><b>Order ID:</b> ${order_id}</p>`
+                <p><b>Order ID:</b> ${order_id}</p>
+                <p><b>Payment Details:</b></p>
+                <p><b>Cart Total Price: </b>${cart_subtotal_price}</p>
+                <p><b>Discount: </b>${discount}</p>
+                <p><b>Total: </b>${total_price}</p>
+                `
             );
 
             return res.json({
