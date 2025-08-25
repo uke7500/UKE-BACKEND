@@ -156,6 +156,7 @@ app.post("/capture-paypal-order", async (req, res) => {
                 "New Order Received",
                 `<h2>New Order from ${full_name}</h2>
                 <p><b>Email:</b> ${email}</p>
+                <p><b>-------------</b></p>
                 <p><b>Shipping Address:</b></p>
                 <p><b>Phone: </b>${phone}</p>
                 <p><b>Address: </b>${address}</p>
@@ -166,15 +167,18 @@ app.post("/capture-paypal-order", async (req, res) => {
                 <p><b>Delivery Time: </b>${delivery_time}</p>
                 <p><b>Shipping Type: </b>${shipping_type}</p>
                 <p><b>Order ID:</b> ${order_id}</p>
-                <h4><b>Payment Details:</b></h4>
+                <p><b>-------------</b></p>
+                <h3><b>Payment Details:</b></h3>
                 <p><b>Cart Total Price: </b>${cart_subtotal_price}</p>
                 <p><b>Discount: </b>${discount}</p>
                 <p><b>Total: </b>${total_price}</p>
-                <h4><b>Product Details:</b></h4>
+                <p><b>-------------</b></p>
+                <h3><b>Product Details:</b></h3>
                 ${order_items.map((item) => `
+                    <p><b>Product Brand:</b> ${item.product.brandz}</p>
                     <p><b>Product:</b> ${item.product.name}</p>
                     <p><b>Quantity:</b> ${item.quantity}</p>
-                    <p><b>Price:</b> ${item.product.model_no}</p>
+                    <p><b>Model No.:</b> ${item.product.model_no}</p>
                 `).join("")}`
             );
 
