@@ -6,10 +6,6 @@ const getOrderData = async (documentId) => {
     const json = await data.json();
 
     return json;
-
-    // console.log(json);
-
-    // console.log(json.data[0].order_item);
 };
 
 export default getOrderData;
