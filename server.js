@@ -107,7 +107,7 @@ app.post("/create-paypal-order", async (req, res) => {
 
 app.post("/capture-paypal-order", async (req, res) => {
     try {
-        const { orderID, documentId } = req.body;
+        const { orderID, documentId, shippingDocumentId } = req.body;
         if (!orderID) throw new Error("orderID is required");
 
         const accessToken = await getAccessToken();
@@ -131,7 +131,7 @@ app.post("/capture-paypal-order", async (req, res) => {
 
         if (data.status === "COMPLETED") {
 
-            const shipping_data = await getShippingData(orderID)
+            const shipping_data = await getShippingData(shippingDocumentId)
 
             const { full_name, address, phone, city, postal_code, country, state, delivery_time, shipping_type, email, order_id } = shipping_data.data;
 
